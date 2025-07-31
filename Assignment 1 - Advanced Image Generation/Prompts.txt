@@ -1,0 +1,24 @@
+Negative Prompt
+
+"blurry, low resolution, artifacts, grainy, noisy, out of focus, overexposed, underexposed, poorly lit, extra furniture, clutter, distored architecture, bad proportions, mutated furnitures, unnatural colors, random objects, extra bedding, broken texture, lens flare, reflections, shadows"
+
+
+1. Minimalistic Studio
+
+"minimalistic interior design. student accomodation in United Kingdom. white walls. simple metallic bed frame, king size bed with two pillows. one wooden study table. one ergonomic chair with wheels. one small window with plants. wooden floor. a small loveseat in the corner. overhead wooden cabin with books"
+
+2. Contemporary studio
+
+contemporary interior design. student accomodation in United Kingdom. white walls.  charcoal gray king size bed with two pillows. one wooden study table. clean study table without any clutter. one ergonomic chair with wheels. one small window with plants. gray laminate flooring. a small iconic minimalist chair in the corner. overhead single, floating shelf with books. contemporary art on main wall above bed.
+
+3. Scandinavian studio
+
+scandinavian interior design. student accomodation in United Kingdom. white walls. Soft and warm lighting. sage green king size bed with two pillows and high-pile cream-colored wool rug. one wooden study table. clean study table without any clutter. one modern ergonomic chair with wheels. one small window with plants. gray laminate flooring. overhead single, floating shelf with a string of fairy lights and pictures. rug on the floor.
+
+4. Rajasthani studio
+
+rajasthani interior design. student accomodation in United Kingdom. palette of Rani pink, saffron yellow, and turquoise against the existing white walls. mirror-work embroidery art on the wall beside bed. block-printed Rajasthani king size bed with two pillows. textured wooden study table. clean study table without any clutter. mosaic glass lamp on study table lights the room. one wooden chair. one window with some plants. wooden flooring with colorful carpet rug. overhead single, floating shelf with a books and pottery. plain white ceiling.
+
+5.japandi studio
+
+japandi interior design. student accomodation in United Kingdom. A calm, muted, and earthy palette. white walls. olive green bed on the floor with two pillows. no bed frame. dark walnut finish study table. elegant wooden chair. clean study table without any clutter. olive green overthrow on the bed. paper desk lamp on study table lightens the room. wabi-sabi. one window with some plants. wooden flooring. overhead floating shelf with katana. plain white ceiling.
