@@ -23,7 +23,9 @@ DEFAULT_CONFIG <- list(
   skill_production_deployment = "beginner",
   learning_style = "build_first",
   depth_preference = "mixed",
-  consumption_habits = "mixed"
+  consumption_habits = "mixed",
+  email_address = "kunal86970@gmail.com",
+  email_enabled = "TRUE"
 )
 
 DEFAULT_SOURCES <- data.frame(
