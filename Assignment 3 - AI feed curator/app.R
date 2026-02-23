@@ -12,6 +12,7 @@ source("R/dedup.R")
 source("R/prompt.R")
 source("R/score_items.R")
 source("R/logging.R")
+source("R/email.R")
 
 TOP_N <- 15
 MUST_READ_THRESHOLD <- 8
@@ -34,9 +35,13 @@ ui <- fluidPage(
                                 tags$i(class = "fa-solid fa-moon", id = "theme-icon"))
            )
   ),
-  # Generate button
-  actionButton("generate_btn", label = tagList(icon("bolt"), " Generate Digest"),
-               class = "btn-generate"),
+  # Generate + Email buttons
+  tags$div(class = "btn-row",
+    actionButton("generate_btn", label = tagList(icon("bolt"), " Generate Digest"),
+                 class = "btn-generate"),
+    actionButton("email_btn", label = tagList(icon("envelope"), " Email Digest"),
+                 class = "btn-email")
+  ),
   # Settings toggle
   tags$button(id = "settings_toggle", class = "btn-settings-toggle",
               icon("gear"), " Settings"),
@@ -103,6 +108,19 @@ ui <- fluidPage(
                     textInput("new_source_name", label = NULL, placeholder = "Name", width = "180px"),
                     textInput("new_source_id", label = NULL, placeholder = "URL or Channel ID", width = "280px"),
                     actionButton("add_source_btn", icon("plus"), class = "btn-add-source")
+           ),
+           # Email settings
+           tags$div(class = "section-divider", "Email Digest"),
+           tags$div(class = "settings-grid",
+             tags$div(class = "setting-group",
+               tags$label("Email Address"),
+               textInput("email_address", label = NULL, width = "100%", placeholder = "you@example.com")
+             ),
+             tags$div(class = "setting-group",
+               tags$label("Daily Email"),
+               selectInput("email_enabled", label = NULL, width = "100%",
+                 choices = c("Enabled" = "TRUE", "Disabled" = "FALSE"))
+             )
            ),
            # Save + precision
            tags$div(class = "settings-actions",
@@ -209,6 +227,8 @@ server <- function(input, output, session) {
     updateSelectInput(session, "skill_RAG", selected = cfg$skill_RAG)
     updateSelectInput(session, "skill_LLM_fundamentals", selected = cfg$skill_LLM_fundamentals)
     updateSelectInput(session, "skill_production_deployment", selected = cfg$skill_production_deployment)
+    updateTextInput(session, "email_address", value = cfg$email_address %||% "kunal86970@gmail.com")
+    updateSelectInput(session, "email_enabled", selected = cfg$email_enabled %||% "TRUE")
     rv$sources <- DEFAULT_SOURCES
     # Try to overlay with Google Sheets data
     tryCatch({
@@ -225,6 +245,8 @@ server <- function(input, output, session) {
       updateSelectInput(session, "skill_RAG", selected = cfg$skill_RAG)
       updateSelectInput(session, "skill_LLM_fundamentals", selected = cfg$skill_LLM_fundamentals)
       updateSelectInput(session, "skill_production_deployment", selected = cfg$skill_production_deployment)
+      updateTextInput(session, "email_address", value = cfg$email_address %||% "kunal86970@gmail.com")
+      updateSelectInput(session, "email_enabled", selected = cfg$email_enabled %||% "TRUE")
       rv$sources <- read_sources()
       rv$topic_profile <- tryCatch(build_topic_profile(), error = function(e) NULL)
       log_info("INIT", "App initialized with Google Sheets data")
@@ -242,7 +264,8 @@ server <- function(input, output, session) {
       consumption_habits = input$consumption_habits,
       skill_MCP = input$skill_MCP, skill_RAG = input$skill_RAG,
       skill_LLM_fundamentals = input$skill_LLM_fundamentals,
-      skill_production_deployment = input$skill_production_deployment)
+      skill_production_deployment = input$skill_production_deployment,
+      email_address = input$email_address, email_enabled = input$email_enabled)
     ok <- write_config(cfg)
     showNotification(if (ok) "\u2705 Settings saved!" else "\u274C Failed to save.", type = "message", duration = 2)
   })
@@ -369,6 +392,20 @@ server <- function(input, output, session) {
     })
   })
   
+  # Email digest
+  observeEvent(input$email_btn, {
+    scored <- rv$scored
+    if (is.null(scored) || nrow(scored) == 0) {
+      showNotification("Generate a digest first.", type = "warning"); return()
+    }
+    config <- list(email_address = input$email_address, email_enabled = input$email_enabled)
+    tp <- rv$topic_profile
+    ok <- send_digest_email(scored, config, tp)
+    showNotification(
+      if (ok) "\u2705 Digest emailed!" else "\u274C Email failed. Check RESEND_API_KEY.",
+      type = "message", duration = 3)
+  })
+
   # Render digest
   output$digest_ui <- renderUI({
     scored <- rv$scored
