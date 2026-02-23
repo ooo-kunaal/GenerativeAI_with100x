@@ -48,8 +48,9 @@ compose_digest_html <- function(scored_df, topic_profile = NULL) {
   }
   # Build item rows
   item_html <- function(row) {
-    score_color <- if (row$score >= 8) "#2E7D32" else if (row$score >= 6) "#C17A1A" else "#6B6B6B"
-    score_bg <- if (row$score >= 8) "#E8F5E9" else if (row$score >= 6) "#FFF8E1" else "#F5F5F5"
+    sc <- as.integer(row$score)
+    score_color <- if (sc >= 8) "#2E7D32" else if (sc >= 6) "#C17A1A" else "#6B6B6B"
+    score_bg <- if (sc >= 8) "#E8F5E9" else if (sc >= 6) "#FFF8E1" else "#F5F5F5"
     type_icon <- switch(as.character(row$item_type), video = "\U0001F4FA", repo = "\U0001F4E6", "\U0001F4F0")
     paste0(
       '<tr><td style="padding:12px 16px;border-bottom:1px solid #E8E5E0;">',
@@ -61,7 +62,7 @@ compose_digest_html <- function(scored_df, topic_profile = NULL) {
       '</div>',
       '<span style="background:', score_bg, ';color:', score_color,
       ';font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;margin-left:12px;">',
-      row$score, '/10</span>',
+      sc, '/10</span>',
       '</div>',
       '<div style="color:#6B6B6B;font-size:13px;margin-top:6px;font-style:italic;">',
       '\u2192 ', htmltools::htmlEscape(row$justification), '</div>',
@@ -70,7 +71,7 @@ compose_digest_html <- function(scored_df, topic_profile = NULL) {
   # Sections
   must_read_section <- ""
   if (nrow(must_read) > 0) {
-    rows <- paste(apply(must_read, 1, item_html), collapse = "")
+    rows <- paste(sapply(seq_len(nrow(must_read)), function(i) item_html(must_read[i, ])), collapse = "")
     must_read_section <- paste0(
       '<tr><td style="padding:20px 16px 8px;font-size:11px;font-weight:700;color:#C62828;',
       'text-transform:uppercase;letter-spacing:1px;">',
@@ -78,7 +79,7 @@ compose_digest_html <- function(scored_df, topic_profile = NULL) {
   }
   worth_section <- ""
   if (nrow(worth_time) > 0) {
-    rows <- paste(apply(worth_time, 1, item_html), collapse = "")
+    rows <- paste(sapply(seq_len(nrow(worth_time)), function(i) item_html(worth_time[i, ])), collapse = "")
     worth_section <- paste0(
       '<tr><td style="padding:20px 16px 8px;font-size:11px;font-weight:700;color:#C17A1A;',
       'text-transform:uppercase;letter-spacing:1px;">',
