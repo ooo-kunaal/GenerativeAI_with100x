@@ -3,7 +3,10 @@ library(ellmer)
 library(jsonlite)
 library(dplyr)
 
-GEMINI_API_KEY <- Sys.getenv("GEMINI_API_KEY", "AIzaSyAIMa3YIeAx5NrnWitATyvkwiiCuC3fC70")
+GEMINI_API_KEY <- (function() {
+  key <- Sys.getenv("GEMINI_API_KEY", "")
+  if (nchar(key) > 0) key else "AIzaSyAIMa3YIeAx5NrnWitATyvkwiiCuC3fC70"
+})()
 GEMINI_MODEL <- "gemini-2.5-flash"
 
 score_items <- function(items_df, config, topic_profile = NULL) {
