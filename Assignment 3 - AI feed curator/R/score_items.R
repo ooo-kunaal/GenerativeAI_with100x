@@ -3,7 +3,7 @@ library(ellmer)
 library(jsonlite)
 library(dplyr)
 
-GEMINI_API_KEY <- "AIzaSyAIMa3YIeAx5NrnWitATyvkwiiCuC3fC70"
+GEMINI_API_KEY <- Sys.getenv("GEMINI_API_KEY", "AIzaSyAIMa3YIeAx5NrnWitATyvkwiiCuC3fC70")
 GEMINI_MODEL <- "gemini-2.5-flash"
 
 score_items <- function(items_df, config, topic_profile = NULL) {
@@ -48,7 +48,7 @@ parse_scores <- function(response_text, n_items) {
   scores_list <- fromJSON(text, simplifyDataFrame = TRUE)
   if (!is.data.frame(scores_list)) scores_list <- bind_rows(scores_list)
   result <- data.frame(score = rep(5L, n_items),
-                       justification = rep("Item was not scored by Gemini.", n_items), stringsAsFactors = FALSE)
+    justification = rep("Item was not scored by Gemini.", n_items), stringsAsFactors = FALSE)
   for (i in seq_len(nrow(scores_list))) {
     idx <- scores_list$index[i] + 1
     if (!is.na(idx) && idx >= 1 && idx <= n_items) {
