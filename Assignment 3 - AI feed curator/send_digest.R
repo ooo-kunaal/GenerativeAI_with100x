@@ -25,7 +25,7 @@ source("R/fetch_github.R")
 source("R/dedup.R")
 source("R/prompt.R")
 source("R/score_items.R")
-source("R/logging.R")
+source("R/Logging.R")
 source("R/email.R")
 
 MUST_READ_THRESHOLD <- 8
