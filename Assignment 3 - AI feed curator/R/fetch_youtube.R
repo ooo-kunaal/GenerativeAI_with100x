@@ -2,9 +2,9 @@
 library(httr2)
 library(jsonlite)
 
-YOUTUBE_API_KEY <- "AIzaSyCjgCUDizHfqH75EWxtUUIt0cHBwJ7TcS4"  # Set your YouTube API key here
+YOUTUBE_API_KEY <- Sys.getenv("YOUTUBE_API_KEY", "")
 YOUTUBE_SEARCH_URL <- "https://www.googleapis.com/youtube/v3/search"
-LOOKBACK_HOURS_YT <- 365*2  # 7 days
+LOOKBACK_HOURS_YT <- 168  # 7 days
 
 fetch_youtube <- function(sources_df = NULL, api_key = YOUTUBE_API_KEY,
                           lookback_hours = LOOKBACK_HOURS_YT) {
