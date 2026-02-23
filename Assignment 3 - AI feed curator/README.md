@@ -2,6 +2,9 @@
 
 A personalized AI learning feed curator built with R Shiny. Aggregates content from RSS feeds and YouTube, scores items against your learning context using Gemini LLM, and delivers a ranked daily digest via email.
 
+* Youtube Video - https://www.youtube.com/watch?v=wvyaL_QuOSg
+* Dashboard Link - https://myy7hd-kunal-choudhary.shinyapps.io/opt-deploy/
+
 ## How It Works
 
 1. **Ingest** — Fetches recent content from RSS feeds (Ben's Bites, Latent Space, Epoch AI, etc.) and YouTube channels (AI Engineer, Andrej Karpathy, Dwarkesh Podcast) with a 48-hour lookback window
