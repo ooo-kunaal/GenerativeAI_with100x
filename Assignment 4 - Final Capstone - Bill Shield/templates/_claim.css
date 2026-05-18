@@ -1,0 +1,19 @@
+{% include "_base.css" %}
+
+.waterfall { margin: 8pt 0 14pt 0; }
+.waterfall .row { display: flex; justify-content: space-between; padding: 4pt 8pt; border-bottom: 1px solid #f0f0f0; font-size: 10pt; }
+.waterfall .row.deduct { background: #fff8f0; }
+.waterfall .row.total { font-weight: 700; border-top: 2px solid #ddd; background: #f9f9f9; }
+.waterfall .row.settlement { font-weight: 700; font-size: 12pt; color: #1f6f33; background: #e3f6e6; border-radius: 4pt; margin-top: 4pt; }
+.waterfall .amt { font-variant-numeric: tabular-nums; font-weight: 600; }
+.waterfall .amt.red { color: #a02020; }
+.deduct-detail { font-size: 9pt; color: #555; padding: 3pt 16pt 6pt 16pt; font-style: italic; }
+.tip { background: #f0f9f3; border-left: 3pt solid #3a8262; padding: 5pt 8pt; margin: 4pt 0 6pt 0; font-size: 9.5pt; }
+.warn { background: #fff8e1; border-left: 3pt solid #e89c1a; padding: 5pt 8pt; margin: 4pt 0 6pt 0; font-size: 9.5pt; }
+.cascade-box { background: #fffbf0; border: 1px solid #e8c060; border-radius: 4pt; padding: 8pt 10pt; margin: 8pt 0; font-size: 9.5pt; }
+.big-stats { display: flex; gap: 10pt; margin: 8pt 0 14pt 0; }
+.big-stats .stat { flex: 1; padding: 10pt 12pt; border: 1px solid #e5e5e5; border-radius: 5pt; }
+.big-stats .stat .slabel { font-size: 8.5pt; color: #666; text-transform: uppercase; letter-spacing: 0.4pt; }
+.big-stats .stat .sval  { font-size: 15pt; font-weight: 700; margin-top: 2pt; font-variant-numeric: tabular-nums; }
+.big-stats .stat.green .sval { color: #1f6f33; }
+.big-stats .stat.red   .sval { color: #a02020; }

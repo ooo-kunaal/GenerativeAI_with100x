@@ -1,0 +1,78 @@
+item_name,category,source_circular,notes
+Admission kit,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Standard admission kit provided by hospital
+Registration/Admission charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,One-time administrative charge at admission
+Medical records/documentation charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Charges for preparing discharge summary and records
+Discharge summary charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Fee for issuing discharge summary
+Attendant charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Charges for hospital-provided patient attendant
+Courier/postal charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Courier charges for sending reports or prescriptions
+Convenience fees,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Any convenience or handling fees
+Photocopies of documents,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Photocopying charges for medical reports
+Internet charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Internet/WiFi usage charges in hospital
+Telephone charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Landline telephone usage in room
+Mobile phone charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Charges for using hospital phone
+TV/Remote charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Television rental or remote control deposit
+DVD/CD/entertainment charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Entertainment services
+Parking charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Vehicle parking at hospital
+Security deposit,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Refundable or non-refundable security deposit
+Bank charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Payment gateway or banking service charges
+Stationery charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Pen paper notepad charges
+Newspaper/magazine charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Reading material provided to patient
+Baby food,Dietary,IRDAI/HLT/CIR/MISC/253/11/2019,Formula or packaged baby food (non-prescribed)
+Packaged food charges,Dietary,IRDAI/HLT/CIR/MISC/253/11/2019,Packaged/branded food items
+Mineral water charges,Dietary,IRDAI/HLT/CIR/MISC/253/11/2019,Bottled mineral water
+Laundry charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Washing of patient clothes or hospital linen
+Housekeeping charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Room cleaning and housekeeping services
+Linen charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Bed sheets pillow covers blankets towels
+Pillow/blanket charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Pillow and blanket usage
+Mattress charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Extra mattress for attendant
+Ceiling fan charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Electrical usage charges for fan
+AC/cooling charges,Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Extra air conditioning usage charges (unless part of room rate)
+Toothbrush,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable or kit toothbrush
+Toothpaste,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Toothpaste supplied in admission kit
+Soap,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Soap bar or liquid soap
+Shampoo,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Shampoo sachets
+Comb,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable comb
+Shaving kit,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Razor blades shaving cream
+Face wash/cream,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Cosmetic face care products
+Talcum powder,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Personal care powder
+Moisturiser/lotion,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Body lotion unless medically prescribed
+Nail cutter,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Nail care tools
+Slippers,Apparel,IRDAI/HLT/CIR/MISC/253/11/2019,Hospital-issued slippers
+Gown/patient dress charges,Apparel,IRDAI/HLT/CIR/MISC/253/11/2019,Hospital gown fee
+Socks,Apparel,IRDAI/HLT/CIR/MISC/253/11/2019,Routine socks unless anti-embolism
+Shoe covers,Apparel,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable shoe covers
+Carry bag/polythene bag,Apparel,IRDAI/HLT/CIR/MISC/253/11/2019,Bag for patient belongings
+Examination gloves,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Latex or nitrile examination gloves (routine use)
+Cotton/gauze (routine),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Routine cotton wool and gauze dressings
+Alcohol swabs,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Spirit swabs used for routine injection sites
+Syringe/needle (routine),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable syringes for routine injections
+IV canula/cannula,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,IV access cannula (routine insertion)
+Micropore/plaster tape,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Adhesive tape for securing dressings
+Band aid,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Adhesive bandage strip
+Urine container/pot,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable urine collection container
+Bedpan,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable or reusable bedpan
+Tissue paper,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Disposable tissue box
+Distilled water (non-therapeutic),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Distilled water used for general cleaning (not prescribed infusion)
+Waste disposal bag,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Biomedical waste bags (charged separately)
+Biomedical waste surcharge,Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Routine biomedical waste disposal charge
+Sterilisation charges (routine),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Routine sterilisation of non-surgical instruments
+Adult diapers,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Diapers for adult patients unless prescribed for post-op incontinence
+Baby diaper charges,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Baby diapers during postnatal stay
+Sanitary pads (routine),Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Routine sanitary napkins (not post-procedure)
+Loofah/scrub,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Bath sponge or loofah
+Mouth wash,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Oral rinse solution (unless prescribed)
+Heating pad/hot water bag,Non-medical Equipment,IRDAI/HLT/CIR/MISC/253/11/2019,Unless medically prescribed
+Water bottle (personal),Dietary,IRDAI/HLT/CIR/MISC/253/11/2019,Personal water bottle or thermos
+Eye mask/ear plug,Hygiene/Toiletry,IRDAI/HLT/CIR/MISC/253/11/2019,Sleep comfort accessories
+Umbilical cord blood banking charges,Non-medical,IRDAI/HLT/CIR/MISC/253/11/2019,Cord blood collection and banking
+Cosmetic/aesthetic treatment charges,Cosmetic,IRDAI/HLT/CIR/MISC/253/11/2019,Any cosmetic or beauty procedure
+Hair colouring/dye,Cosmetic,IRDAI/HLT/CIR/MISC/253/11/2019,Hair treatment services
+Beauty services,Cosmetic,IRDAI/HLT/CIR/MISC/253/11/2019,Salon or spa services in hospital
+Weight machine/scale charges,Non-medical,IRDAI/HLT/CIR/MISC/253/11/2019,Use of hospital weighing scale
+Toys for children,Non-medical,IRDAI/HLT/CIR/MISC/253/11/2019,Toy or entertainment items for paediatric patients
+Visitor pass charges,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Pass issuance charges for visitor entry
+Cafeteria charges (attendant food),Dietary,IRDAI/HLT/CIR/MISC/253/11/2019,Meals/snacks for patient attendants (not patient diet)
+Bed charges (attendant),Housekeeping,IRDAI/HLT/CIR/MISC/253/11/2019,Attendant cot or bedding charges
+Oxygen cylinder deposit,Administrative,IRDAI/HLT/CIR/MISC/253/11/2019,Refundable cylinder deposit (non-therapeutic charge)
+Gloves (sterile surgical - routine),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Sterile gloves charged per routine usage (procedure gloves billed separately as surgical supply)
+Sample collection charges (routine),Routine Consumable,IRDAI/HLT/CIR/MISC/253/11/2019,Routine phlebotomy or sample collection fee (unless a separate diagnostic service)

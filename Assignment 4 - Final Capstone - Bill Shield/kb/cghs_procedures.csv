@@ -1,0 +1,54 @@
+cghs_code,canonical_name,rate_x_tier,rate_y_tier,rate_z_tier,source_om,source_date,notes
+CN001,Consultation - OPD - General,350,350,350,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Uniform across all tiers per OM 03.10.2025
+CN002,Consultation - IPD,350,350,350,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Same as inpatient consultation; uniform across tiers
+CN002,IPD Doctor Visit,350,350,350,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+CN002,Doctor Visit Charge IPD,350,350,350,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+CN002,Consultation - Emergency,350,350,350,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Casualty/emergency consultation; uniform across tiers
+CN003,Consultation - OPD - Specialty,700,700,700,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Super-speciality/psychiatry; uniform across all tiers
+CN003,Consultation Revisit,700,700,700,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+CN004,Junior Doctor Charges,250,250,250,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Resident/junior doctor daily rounds; CGHS does not list separately - bundled into IPD consultation
+OT001,Operating Theatre General Charge,3000,2700,2400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Base OT charge for minor procedures
+OT001,Operative Theatre General Charges,3000,2700,2400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+OT001,OT General,3000,2700,2400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+OT002,Operating Theatre Major Surgery Charge,8000,7200,6400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,For major surgeries lasting > 90 min
+AN001,Anaesthesia - Local Anaesthesia,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+AN002,Anaesthesia - General Anaesthesia (Minor Surgery),3000,2700,2400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Procedures < 60 min
+AN003,Anaesthesia - General Anaesthesia (Major Surgery),5000,4500,4000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Procedures > 60 min; CGHS often bills GA as 25 percent of procedure rate
+AN003,General Anaesthesia for Skin Flap Procedure,5000,4500,4000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,GA component for major skin flap surgery
+AN004,Anaesthesia - Spinal/Epidural,2500,2250,2000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SK001,Skin Flap - Small,8000,7200,6400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SK002,Skin Flap - Medium,15000,13500,12000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SK003,Skin Flap - Large,25000,22500,20000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Large reconstructive flap
+AB001,Abscess Drainage - Small,1500,1350,1200,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Incision and drainage
+AB002,Abscess Drainage - Large,3500,3150,2800,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+HE001,Inguinal Hernioplasty - Unilateral - Open,15000,13500,12000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+HE002,Inguinal Hernioplasty - Bilateral - Open,22000,19800,17600,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+HE003,Inguinal Hernioplasty - Unilateral - Laparoscopic,20000,18000,16000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SP001,Septoplasty (SMR),15000,13500,12000,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+PH001,Phacoemulsification + IOL (single eye),25800,23220,20640,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Cataract surgery package
+PR001,Blood Sample Collection,30,27,24,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Phlebotomy charge - usually bundled into investigation
+PR002,IV Cannulation,75,68,60,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Insertion of peripheral cannula; usually bundled into nursing care
+PR003,Injection Administration,30,27,24,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per injection
+PR004,Vitals Checking,0,0,0,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Bundled into nursing care - should not be separately billed
+PR005,ABG Sampling,0,0,0,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Sampling cost bundled into ABG analysis rate (LB119)
+PR006,Bladder Catheterization,150,135,120,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+PR007,Nasogastric Tube Insertion,150,135,120,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SU001,Suture Removal,150,135,120,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+SU002,Dressing - Simple,75,68,60,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per dressing change
+SU003,Dressing - Complex,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Burns large wounds etc
+SU003,Surgical Dressing,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+RG001,Registration / Admission Charges,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Hospital admission overhead
+RG002,Medical Record Charges,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Medical record maintenance
+NU001,Patient Linen and Laundry Charges,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Daily IPD - bundled into room rent
+NU002,Biomedical Waste Charges,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Daily IPD - bundled into room rent
+NU003,Ward Sundry Charges,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Generally bundled into room rent
+NU004,Nursing Care - General Ward,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per day - typically bundled
+OT_EQ_001,Operating Theatre Camera Usage,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per procedure - often bundled
+OT_EQ_002,Operating Theatre Light Source Usage,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per procedure - often bundled
+OT_EQ_003,Operating Theatre Monitor Usage,400,360,320,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Multi-parameter monitor
+OT_EQ_004,Operating Theatre Ventilator Usage,1500,1350,1200,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per procedure
+OT_EQ_005,Operating Theatre Diathermy Usage,800,720,640,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Electrosurgical cautery
+OT_EQ_006,Operating Theatre Anaesthesia Machine,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Boyle's apparatus
+OT_GAS_001,Oxygen Supply (Operative),200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per procedure
+OT_GAS_002,Nitrous Oxide Gas,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per procedure
+DI_001,Diet Package,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per day IPD - usually bundled

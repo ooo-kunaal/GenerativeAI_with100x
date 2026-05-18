@@ -1,0 +1,6 @@
+molecule,strength,form,jan_aushadhi_mrp,unit,source,source_date,notes
+Paracetamol,1000mg,IV Infusion 100ml,TBD_VERIFY,per_bottle,Jan Aushadhi PMBJP price list,2025-06-01,
+Pantoprazole,40mg,Lyophilized Injection,TBD_VERIFY,per_vial,Jan Aushadhi PMBJP price list,2025-06-01,
+Ondansetron,2mg/ml,Injection 2ml Amp,TBD_VERIFY,per_amp,Jan Aushadhi PMBJP price list,2025-06-01,
+Ringer Lactate,500ml,IV Fluid,TBD_VERIFY,per_bottle,Jan Aushadhi PMBJP price list,2025-06-01,
+Metformin,500mg,Tablet,2.50,per_tablet,KB spec cited value,2025-06-01,Per project KB spec

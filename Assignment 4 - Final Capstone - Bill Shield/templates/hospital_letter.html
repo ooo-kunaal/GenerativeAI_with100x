@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Request for Clarification</title>
+<link rel="stylesheet" href="_base.css">
+</head><body>
+
+<div class="header">
+  <div class="brand">Request for Clarification</div>
+  <div class="meta">{{ today }}</div>
+</div>
+
+<p><strong>To:</strong> The Billing Department<br>
+{{ analysis.hospital.name }}{% if analysis.hospital.city %}, {{ analysis.hospital.city }}{% endif %}</p>
+
+<p><strong>Regarding:</strong> Bill for {{ analysis.patient.name_redacted }}{% if analysis.encounter.admission_date %}, admitted {{ analysis.encounter.admission_date }}{% endif %}{% if analysis.encounter.discharge_date %}, discharged {{ analysis.encounter.discharge_date }}{% endif %}. Net amount: ₹{{ "{:,.0f}".format(analysis.totals.net_amount or analysis.totals.gross_amount) }}.</p>
+
+{% if multi_hospital_warning %}
+<p class="small muted" style="border-left:3px solid #c8553d;padding-left:10pt;margin:10pt 0;"><em>{{ multi_hospital_warning }}</em></p>
+{% endif %}
+
+<div class="letter">
+
+<p>Dear Sir or Madam,</p>
+
+<p>Thank you for the care provided. Before settling the bill, I would be grateful for a brief written clarification on the items listed below. I am writing in good faith — not as a complaint — and would value your help understanding the basis for each charge so I can settle the bill confidently.</p>
+
+{% if flagged_grouped %}
+<p>The following items appear to be priced significantly above the benchmark rates published in the Government of India's CGHS Revised Rate Card (Office Memorandum F.No. 5-16/CGHS(HQ)/HEC/2024 dated 3 October 2025), the NPPA Drug Price Control Order, or the Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) price list, as applicable.</p>
+
+<table>
+  <thead><tr><th>Line item</th><th class="amt">Billed</th><th class="amt">Reference</th><th class="amt">Difference</th></tr></thead>
+  <tbody>
+  {% for g in flagged_grouped %}
+    <tr>
+      <td>{{ g.canonical_name }}{% if g.count > 1 %} <span class="small muted">(charged {{ g.count }}×)</span>{% endif %}</td>
+      <td class="amt">₹ {{ "{:,.0f}".format(g.total_billed) }}</td>
+      <td class="amt">{% if g.total_benchmark %}₹ {{ "{:,.0f}".format(g.total_benchmark) }}{% else %}—{% endif %}</td>
+      <td class="amt">{% if g.total_delta %}+₹{{ "{:,.0f}".format(g.total_delta) }}{% else %}—{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p>I appreciate that legitimate variances exist (NABH accreditation premium, equipment costs, ward category) and I am not alleging any wrongdoing. I would simply value an explanation of the basis for each of the above items.</p>
+{% endif %}
+
+{% if grey %}
+<p>Separately, the following items are described or aggregated in ways I find difficult to verify against any published reference. Could you provide an itemised breakdown so I have a clear record of what each charge covers?</p>
+<ul>
+  {% for it in grey[:10] %}<li>{{ clean_desc(it.raw.raw_description)[:80] }} — ₹ {{ "{:,.0f}".format(it.raw.amount) }}</li>{% endfor %}
+</ul>
+{% endif %}
+
+<p>I would be grateful for a written response within a reasonable time. I am happy to meet in person at the billing desk to discuss any of the above. Please consider this letter a formal request for information, not a complaint.</p>
+
+<p>With thanks for your time and assistance.</p>
+
+<div class="signature">
+  <p>Yours faithfully,</p>
+  <p style="margin-top: 32pt;">_________________________<br>
+  {{ analysis.patient.name_redacted }} (or attendant)<br>
+  Contact: __________________________<br>
+  Date: {{ today }}</p>
+</div>
+
+<p class="small muted" style="margin-top: 24pt;">
+  Reference rates cited are drawn from: CGHS Revised Rate Card 2025 (Office Memorandum F.No. 5-16/CGHS(HQ)/HEC/2024 dated 3 October 2025); NPPA DPCO Schedule I ceiling-price notifications; and the Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) product price list, June 2025. Retail consumable prices are indicative ranges from public pharmacy listings, not statutory rates.
+</p>
+
+</div>
+</body></html>

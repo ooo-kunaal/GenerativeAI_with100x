@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>BillShield Summary</title>
+<link rel="stylesheet" href="_base.css">
+</head><body>
+
+<div class="header">
+  <div class="brand">BillShield · Bill Review Summary</div>
+  <div class="meta">Generated {{ today }}<br>Hospital: {{ analysis.hospital.name }}</div>
+</div>
+
+<p class="small muted">Patient: {{ analysis.patient.name_redacted }} · Encounter: {{ analysis.encounter.type }}
+  {% if analysis.encounter.admission_date %}· Admitted {{ analysis.encounter.admission_date }}{% endif %}
+  {% if analysis.encounter.discharge_date %}· Discharged {{ analysis.encounter.discharge_date }}{% endif %}</p>
+
+{% if multi_hospital_warning %}
+<div style="border:1px solid #c8553d;background:#fbeae5;padding:10pt 12pt;margin:14pt 0;border-radius:6pt;">
+  <strong style="color:#c8553d;">Note:</strong> {{ multi_hospital_warning }}
+</div>
+{% endif %}
+
+<div class="kpi">
+  <div class="box"><div class="label">Total Billed</div><div class="value">₹ {{ "{:,.0f}".format(analysis.totals.net_amount or analysis.totals.gross_amount) }}</div></div>
+  <div class="box"><div class="label">Verified Fair</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_verified_fair) }}</div></div>
+  <div class="box"><div class="label">Flagged</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_flagged) }}</div></div>
+  <div class="box"><div class="label">Need breakdown</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_unverifiable) }}</div></div>
+</div>
+
+<h2>Flagged line items</h2>
+{% if flagged_grouped %}
+<table>
+  <thead><tr><th>Item</th><th class="amt">Billed</th><th class="amt">Benchmark</th><th class="amt">Δ</th></tr></thead>
+  <tbody>
+  {% for g in flagged_grouped[:10] %}
+    <tr>
+      <td>{{ g.canonical_name }}{% if g.count > 1 %} <span class="small muted">(×{{ g.count }})</span>{% endif %}</td>
+      <td class="amt">₹ {{ "{:,.0f}".format(g.total_billed) }}</td>
+      <td class="amt">{% if g.total_benchmark %}₹ {{ "{:,.0f}".format(g.total_benchmark) }}{% else %}—{% endif %}</td>
+      <td class="amt">{% if g.total_delta %}+{{ "{:,.0f}".format(g.total_delta) }}{% else %}—{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% if flagged_grouped|length > 10 %}<p class="small muted">…and {{ flagged_grouped|length - 10 }} more flagged items. See the Full Pack for the complete breakdown.</p>{% endif %}
+{% else %}
+<p class="muted">No items flagged for overcharge in this bill.</p>
+{% endif %}
+
+<h2>Items needing breakdown</h2>
+{% if grey %}
+<p class="small muted">We could not find a government benchmark for the following. Their fairness cannot be confirmed — request an itemised breakdown from the hospital.</p>
+<ul class="small">
+  {% for it in grey[:10] %}<li>{{ clean_desc(it.raw.raw_description)[:80] }} · ₹ {{ "{:,.0f}".format(it.raw.amount) }}</li>{% endfor %}
+</ul>
+{% else %}
+<p class="small muted">All line items were benchmarkable.</p>
+{% endif %}
+
+<p class="small muted" style="margin-top: 14pt;">
+  This summary is for the patient's own use. It is computer-generated, draws on hand-curated benchmarks from CGHS (OM dated 3 October 2025), NPPA ceiling prices, and Jan Aushadhi public price lists, and does not constitute legal advice.
+</p>
+
+</body></html>

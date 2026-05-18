@@ -1,0 +1,12 @@
+room_type,nabh_rate,non_nabh_rate,unit,source_om,source_date,notes
+General Ward,1500,1100,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Multi-bed ward
+Twin Sharing Room,3000,2200,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Semi-private
+Premium Twin Sharing,4500,3500,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Upgraded twin/twin sharing
+Single Cabin,5000,3500,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Private single room
+Single Cabin Room,5000,3500,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Same as Single Cabin
+Single Cabin Room Rent,5000,3500,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Same as Single Cabin
+Deluxe Room,7500,5500,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Upgraded private
+ICU,9000,7200,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Intensive care
+ICU with Ventilator,12000,9600,per day,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+Emergency Room - Per Hour,200,150,per hour,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Casualty/ER short stay
+Emergency Room Rent - Per Hour,200,150,per hour,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,

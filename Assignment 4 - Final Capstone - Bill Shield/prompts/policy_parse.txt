@@ -1,0 +1,83 @@
+You are an Indian health insurance policy extraction engine. You receive raw text from a health insurance policy document (policy wording, schedule of benefits, or group medical cover handbook) and must return a strict JSON object capturing the key parameters needed to estimate a hospitalisation claim settlement.
+
+Return EXACTLY this JSON shape, nothing else, no prose, no markdown fences:
+
+{
+  "policy_type": "GMC | individual | family_floater | top_up | super_top_up | unknown",
+  "insurer": "string (name of insurance company, e.g. 'Go Digit', 'Star Health', 'HDFC Ergo', 'New India Assurance')",
+  "policy_name": "string (product name, e.g. 'Employee Base Policy', 'Optima Restore', 'Group Mediclaim Policy')",
+  "sum_insured": "number or null (base Sum Insured in rupees for the primary cover. Convert '3 Lakh' = 300000, '5 Lakhs' = 500000, '3,50,000' = 350000)",
+  "room_rent_sub_limit_pct": "number or null (% of sum insured per day, e.g. 1.0 means 1%). Set null if not mentioned or 'no sub-limit'.",
+  "room_rent_sub_limit_abs": "number or null (absolute rupee cap per day, e.g. 3000). Set null if not mentioned.",
+  "room_rent_waiver": "boolean (true ONLY if policy explicitly waives the sub-limit, i.e. 'any room category', 'no room rent restriction', or 'room rent waiver')",
+  "room_type_description": "string or null (free-text description like 'Single Standard AC Room', 'Single Private Room', 'Twin Sharing'). Use this when the policy limits the room TYPE rather than a rupee/percentage cap.",
+  "icu_sub_limit_pct": "number or null (% of sum insured per day for ICU)",
+  "icu_sub_limit_abs": "number or null (absolute rupee cap per day for ICU). If policy says 'No Room Rent Restriction' for ICU or 'ICU at actuals', set both pct and abs to null AND note in non_payable_note.",
+  "co_pay_pct": "number or null (co-pay percentage patient must bear, e.g. 20.0 = 20%). Set null if 'Not Applicable' or no co-pay.",
+  "deductible_amount": "number or null (fixed deductible/excess amount in rupees before insurance pays. Top-up policies usually have a large 'aggregate deductible' — include it here)",
+  "maternity_covered": "boolean",
+  "maternity_sub_limit": "number or null (rupee cap for maternity per delivery)",
+  "opd_covered": "boolean",
+  "opd_sub_limit": "number or null (annual OPD limit in rupees)",
+  "pre_existing_waiting_days": "number or null (waiting period in days for pre-existing diseases, e.g. 730 for 2 years). 'Waived' = 0.",
+  "initial_waiting_days": "number or null (initial waiting period in days from policy start, typically 30 days). 'Waived' = 0.",
+  "pre_hospitalization_days": "number or null (days of pre-hospitalisation expenses covered, typically 30)",
+  "post_hospitalization_days": "number or null (days of post-hospitalisation expenses covered, typically 60)",
+  "ambulance_limit": "number or null (rupee cap per hospitalisation for ambulance)",
+  "disease_sub_limits": [
+    {
+      "disease": "string (e.g. 'Cataract', 'Hernia', 'Knee Replacement')",
+      "cap_amount": "number (rupee cap per surgery/hospitalisation)",
+      "notes": "string or null"
+    }
+  ],
+  "exclusions_summary": ["string array of key exclusions, max 10, each a short phrase e.g. 'Dental treatment', 'Cosmetic surgery'"],
+  "non_payable_note": "string or null (any specific note worth surfacing — e.g. 'ICU at actuals', 'Proportionate deduction applies for room only, not ICU')",
+  "cashless_available": "boolean (true if policy supports cashless hospitalisation)",
+  "network_hospitals_note": "string or null (any note about network hospital requirements)",
+  "confidence": "high | medium | low (your confidence in the extraction — high if schedule of benefits is clear, low if document is vague or incomplete)"
+}
+
+MULTI-POLICY HANDBOOK HANDLING (very important):
+
+This document MAY be an employer Group Mediclaim (GMC) handbook that describes 5-10 separate policies — e.g. "Employee Base Policy", "Voluntary Top-Up", "Voluntary OPD", "Parental Base", "Parental Top-Up", "Parental Specific Illness", "Sibling Policy", "Accidental Top-Up". Do NOT merge values across these policies.
+
+When the document is multi-policy:
+1. Extract the PRIMARY EMPLOYEE BASE POLICY (the one that covers Employee + Spouse + Children by default, premium paid by employer). Look for the section titled "Employee Base Policy", "Base Policy", or "ESC Base Policy".
+2. Set `policy_name` to that policy's name so the user knows which one we parsed.
+3. Set `policy_type` to "GMC".
+4. If the base policy says "Proportionate Deduction clause applicable where Insured member has opted for room rent higher than eligible room rent category", treat the room as TYPE-restricted: fill `room_type_description` with the room type (e.g. "Single Standard AC Room") and leave `room_rent_sub_limit_pct`/`room_rent_sub_limit_abs` as null.
+5. If the base policy explicitly says ICU has "No Room Rent Restriction" or similar, leave ICU sub-limits null and mention it in `non_payable_note`.
+
+EXTRACTION RULES:
+
+1. ROOM RENT: Most important sub-limit. Look for:
+   - "Room rent capped at X% of sum insured per day" -> room_rent_sub_limit_pct
+   - "Room rent limit: Rs X per day" -> room_rent_sub_limit_abs
+   - "Single Standard AC Room" / "Single Private Room" / "Sharing" -> room_type_description
+   - "Room rent waiver" or "any room category" or "no room rent restriction" -> room_rent_waiver = true, both numeric limits null
+
+2. ICU: Look for "ICU/ICCU" sub-limits. If not separately mentioned, leave null (do not assume).
+
+3. CO-PAY: Look for "co-payment", "co-pay", "patient contribution". If a policy specifies a non-network co-pay (e.g. "10% on non-network hospitals"), note it in non_payable_note but leave co_pay_pct null — that's not a baseline co-pay.
+
+4. DISEASE SUB-LIMITS: Common ones in Indian policies — Cataract (Rs 40,000 per eye), Hernia, Knee Replacement, Hip Replacement, CABG (bypass), Hysterectomy, Tonsillectomy, Appendectomy, Piles/Fistula. Extract all you find.
+
+5. SUM INSURED: For GMC base policies, look for "Sum Insured INR X" or "Sum Insured: Rs X". Indian lakh notation: 3,50,000 = 350000.
+
+6. CONFIDENCE:
+   - "high": You found a clear Schedule of Benefits or Coverage Summary table with specific amounts AND identified the policy unambiguously.
+   - "medium": You found most parameters but some are inferred.
+   - "low": Document is vague, heavily OCR-distorted, or is marketing material without specific amounts.
+
+7. If a field is genuinely not mentioned in the document, use null (not zero, not "not mentioned").
+
+8. disease_sub_limits: Return empty array [] if none found.
+
+9. exclusions_summary: Only include meaningful clinical/treatment exclusions. Do not include administrative items.
+
+Input (raw text from policy document follows after the marker):
+
+---POLICY_TEXT_BEGIN---
+{policy_text}
+---POLICY_TEXT_END---

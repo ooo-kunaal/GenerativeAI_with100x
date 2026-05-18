@@ -1,0 +1,104 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>BillShield Full Pack</title>
+<link rel="stylesheet" href="_base.css">
+</head><body>
+
+<!-- PAGE 1: SUMMARY -->
+<div class="header">
+  <div class="brand">BillShield · Full Bill Review</div>
+  <div class="meta">Generated {{ today }}<br>{{ analysis.hospital.name }}</div>
+</div>
+
+<p class="small muted">Patient: {{ analysis.patient.name_redacted }} · Encounter: {{ analysis.encounter.type }}
+  {% if analysis.encounter.admission_date %}· Admitted {{ analysis.encounter.admission_date }}{% endif %}
+  {% if analysis.encounter.discharge_date %}· Discharged {{ analysis.encounter.discharge_date }}{% endif %}</p>
+
+{% if multi_hospital_warning %}
+<div style="border:1px solid #c8553d;background:#fbeae5;padding:10pt 12pt;margin:14pt 0;border-radius:6pt;">
+  <strong style="color:#c8553d;">Note:</strong> {{ multi_hospital_warning }}
+</div>
+{% endif %}
+
+<div class="kpi">
+  <div class="box"><div class="label">Total Billed</div><div class="value">₹ {{ "{:,.0f}".format(analysis.totals.net_amount or analysis.totals.gross_amount) }}</div></div>
+  <div class="box"><div class="label">Verified Fair</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_verified_fair) }}</div></div>
+  <div class="box"><div class="label">Flagged</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_flagged) }}</div></div>
+  <div class="box"><div class="label">Need breakdown</div><div class="value">₹ {{ "{:,.0f}".format(analysis.rupees_unverifiable) }}</div></div>
+</div>
+
+<p class="small muted">
+  This review compares billed amounts against the Government of India's CGHS Revised Rate Card (Office Memorandum F.No. 5-16/CGHS(HQ)/HEC/2024 dated 3 October 2025), the NPPA Drug Price Control Order ceiling prices, and Pradhan Mantri Bhartiya Janaushadhi Pariyojana product prices, where applicable. Items without a published government rate are assessed by automated reasonableness check against typical Indian private-hospital pricing; these are clearly marked.
+</p>
+
+<h2>Top flagged items</h2>
+{% if flagged_grouped %}
+<table>
+  <thead><tr><th>Item</th><th class="amt">Billed</th><th class="amt">Benchmark</th><th class="amt">Δ</th></tr></thead>
+  <tbody>
+  {% for g in flagged_grouped[:12] %}
+    <tr>
+      <td>{{ g.canonical_name }}{% if g.count > 1 %} <span class="small muted">(×{{ g.count }})</span>{% endif %}</td>
+      <td class="amt">₹ {{ "{:,.0f}".format(g.total_billed) }}</td>
+      <td class="amt">{% if g.total_benchmark %}₹ {{ "{:,.0f}".format(g.total_benchmark) }}{% else %}—{% endif %}</td>
+      <td class="amt">{% if g.total_delta %}+{{ "{:,.0f}".format(g.total_delta) }}{% else %}—{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}<p class="muted">No items flagged for overcharge.</p>{% endif %}
+
+<!-- PAGE 2: LETTER -->
+<div class="page-break"></div>
+<div class="header"><div class="brand">Request for Clarification</div><div class="meta">{{ today }}</div></div>
+
+<p><strong>To:</strong> The Billing Department, {{ analysis.hospital.name }}{% if analysis.hospital.city %}, {{ analysis.hospital.city }}{% endif %}</p>
+<p><strong>Regarding:</strong> Bill for {{ analysis.patient.name_redacted }}{% if analysis.encounter.discharge_date %}, discharged {{ analysis.encounter.discharge_date }}{% endif %}. Net amount: ₹{{ "{:,.0f}".format(analysis.totals.net_amount or analysis.totals.gross_amount) }}.</p>
+
+<div class="letter">
+<p>Dear Sir or Madam,</p>
+<p>Before settling the bill, I would be grateful for a brief written clarification on the line items listed in the appendix. I am writing in good faith and would value your help understanding the basis for each charge. Reference rates have been drawn from the Government of India's CGHS Revised Rate Card (Office Memorandum F.No. 5-16/CGHS(HQ)/HEC/2024 dated 3 October 2025), the NPPA Drug Price Control Order, and the Pradhan Mantri Bhartiya Janaushadhi Pariyojana product list.</p>
+<p>I appreciate that legitimate variances exist (NABH accreditation, equipment costs, ward category) and I am not alleging any wrongdoing.</p>
+<p>With thanks,</p>
+<div class="signature"><p style="margin-top:24pt;">_________________________<br>{{ analysis.patient.name_redacted }} (or attendant)<br>Contact: __________________________<br>Date: {{ today }}</p></div>
+</div>
+
+<!-- PAGE 3+: APPENDIX - flagged + grey only. Fair items get a single roll-up at end. -->
+<div class="page-break"></div>
+<div class="header"><div class="brand">Appendix · Per-item evidence</div><div class="meta">{{ today }}</div></div>
+
+{% set keepers = flagged + grey %}
+{% for it in keepers %}
+<h3>{{ loop.index }}. {{ clean_desc(it.raw.raw_description) }}</h3>
+<p class="small muted">
+  Category: {{ it.classification.category }} · Mapped to: {{ it.classification.canonical_name }}
+  · Billed: ₹ {{ "{:,.2f}".format(it.raw.amount) }}
+  {% if it.raw.hospital_code %}· Code: {{ it.raw.hospital_code }}{% endif %}
+</p>
+{% set has_ok = it.flags|selectattr('kind', 'equalto', 'ok')|list|length > 0 %}
+{% for f in it.flags %}
+  {% if f.kind == 'stale_benchmark' %}{# skip - internal only #}
+  {% elif f.kind == 'ambiguous_mapping' and has_ok %}{# suppress when reasonableness already cleared it #}
+  {% elif f.kind == 'ok' %}{# don't repeat ok detail for flagged-row items #}
+  {% else %}
+<div class="evidence {{ f.severity }}">
+  <strong>{{ f.kind|replace('_',' ')|title }}</strong><br>
+  {{ f.message }}
+  {% if f.citation %}<br><span class="citation">Source: {{ f.citation }}</span>{% endif %}
+</div>
+  {% endif %}
+{% endfor %}
+{% endfor %}
+
+{% if fair %}
+<div style="margin-top:24pt;padding:12pt 14pt;border:1px solid #d4d4d4;border-left:3px solid #3a8262;background:#f8fcfa;border-radius:4pt;">
+  <p style="margin:0 0 6pt 0;"><strong>Items judged reasonable ({{ fair|length }} items totalling ₹{{ "{:,.0f}".format(fair_total) }})</strong></p>
+  <p class="small muted" style="margin:0;">The following line items were either matched to a government benchmark and found within tolerance, or judged reasonable by automated check against typical Indian private-hospital pricing. They are not part of the dispute case.</p>
+  <ul class="small" style="margin-top:8pt;">
+    {% for it in fair %}
+    <li>{{ clean_desc(it.raw.raw_description)[:60] }} — ₹ {{ "{:,.0f}".format(it.raw.amount) }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+</body></html>

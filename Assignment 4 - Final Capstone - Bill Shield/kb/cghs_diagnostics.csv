@@ -1,0 +1,42 @@
+cghs_code,canonical_name,rate_x_tier,rate_y_tier,rate_z_tier,source_om,source_date,notes
+LB119,Arterial Blood Gas (ABG),560,504,448,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,NABH Tier X semi-private ward; LB120 with electrolytes = 800
+LB120,Arterial Blood Gas with electrolytes,800,720,640,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB055,Random Blood Sugar (RBS) / GRBS,40,36,32,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Same code covers fasting/PP/random glucometer readings
+LB055,Sugar Test by Glucometer,40,36,32,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Bedside glucometer reading uses LB055
+LB055,Fasting Blood Sugar / Glucose Fasting,40,36,32,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB055,Capillary Blood Glucose (CBG) Test,40,36,32,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Same code as RBS - CBG is a glucometer reading
+LB012,Complete Blood Count (Automated),300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Complete Haemogram includes Hb TC DC platelet ESR peripheral smear
+LB007,Haemoglobin TC DC,50,45,40,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB007,Hemoglobin Total Count Differential Count,50,45,40,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB013,Platelet Count,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB105,Prothrombin Time (PT/INR),250,225,200,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB057,Urea - Serum,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB057,Urea Serum Plasma,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB058,Creatinine - Serum,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB058,Creatinine Serum,100,90,80,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB044,HIV I & II Antibody,385,346,308,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB044,HIV I & II Assay Serum,385,346,308,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB042,Hepatitis B Surface Antigen (HBsAg),300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB042,Hepatitis B Surface Antigen Test,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB043,Anti HCV Antibody,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB043,Anti HCV Test,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB122,HbA1c,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB036,Blood Group ABO + Rh,90,81,72,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB036,Blood Group and RH Factor,90,81,72,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB123,Kidney Function Test (KFT),500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Bundle: urea creatinine uric acid Na K calcium
+LB124,Liver Function Test (LFT),500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Bundle: bilirubin SGOT SGPT alk phos protein albumin
+LB125,Lipid Profile,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Total chol LDL HDL TG
+LB126,TSH - Serum,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB126,Thyroid Stimulating Hormone TSH,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB127,T3 T4 TSH,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Full thyroid panel
+LB128,Urine Routine Examination,75,68,60,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB129,Urine Microscopy,50,45,40,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB130,Urine Culture,300,270,240,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+LB131,Blood Culture,500,450,400,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+EC001,Electrocardiogram (ECG),60,54,48,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,12-lead ECG with reporting
+EC001,ECG,60,54,48,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+XR001,X-Ray Chest PA View,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Single view PA
+XR001,X-Ray Chest PA,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,
+XR002,X-Ray Soft Tissue Nasopharynx Lateral,200,180,160,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Single view
+OP001,Optical Coherence Tomography (OCT) Single Eye,1000,900,800,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Per eye
+OP002,Specular Microscopy,550,495,440,CGHS OM F.No. 5-16/CGHS(HQ)/HEC/2024(PartI),2025-10-03,Corneal endothelial cell count

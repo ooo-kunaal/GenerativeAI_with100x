@@ -1,0 +1,17 @@
+molecule,strength,form,brand_seen_on_bills,ceiling_price_per_unit,unit,source_so,source_date,notes
+Paracetamol,1000 mg/100ml,IV Infusion,Aequimol/Perfalgan,38,per bottle,NPPA Notification S.O.,2024-04-01,Per 100ml infusion bottle
+Pantoprazole,40 mg,Lyophilized Injection,Pantocid/Pantop,24,per vial,NPPA Notification S.O.,2024-04-01,Per 40mg vial including water for injection
+Pantoprazole,40 mg,Tablet,Pantocid/Pantop,2.5,per tablet,NPPA Notification S.O.,2024-04-01,Per tablet
+Ondansetron,2 mg/ml (2ml),Injection,Emeset/Mediset,8,per ampoule,NPPA Notification S.O.,2024-04-01,2ml ampoule
+Ondansetron,4 mg,Tablet,Emeset/Vomistop,3,per tablet,NPPA Notification S.O.,2024-04-01,
+Ringer Lactate,500 ml,IV Fluid,RL/Ringer Lactate,40,per bottle,NPPA Notification S.O.,2024-04-01,500ml PVC/glass bottle
+Normal Saline,500 ml,IV Fluid,NS/Sodium Chloride,30,per bottle,NPPA Notification S.O.,2024-04-01,500ml 0.9% sodium chloride
+Dextrose 5%,500 ml,IV Fluid,D5/Dextrose,32,per bottle,NPPA Notification S.O.,2024-04-01,
+Atropine,0.6 mg/ml (1ml),Injection,Atropin,2.5,per ampoule,NPPA Notification S.O.,2024-04-01,
+Bupivacaine,0.5% (4ml),Spinal Injection,Bupicain/Marcaine,16,per ampoule,NPPA Notification S.O.,2024-04-01,Heavy/spinal
+Cefuroxime,1.5 g,Injection,Altacef/Ceftin,140,per vial,NPPA Notification S.O.,2024-04-01,1.5g IV/IM vial
+Ceftriaxone,1 g,Injection,Rocephin/Monocef,40,per vial,NPPA Notification S.O.,2024-04-01,
+Metronidazole,500 mg/100ml,IV Infusion,Metris/Flagyl,10,per bottle,NPPA Notification S.O.,2024-04-01,100ml infusion
+Diclofenac,75 mg/ml (1ml),Injection,Voveran/Dynatroy,3,per ampoule,NPPA Notification S.O.,2024-04-01,
+Glycopyrrolate,0.2 mg/ml (1ml),Injection,Pyrolate,12,per ampoule,NPPA Notification S.O.,2024-04-01,
+Alprazolam,0.5 mg,Tablet,Alprax/Restyl,2,per tablet,NPPA Notification S.O.,2024-04-01,

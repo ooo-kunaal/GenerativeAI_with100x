@@ -1,0 +1,33 @@
+@page { size: A4; margin: 18mm 16mm; @bottom-right { content: counter(page) " / " counter(pages); font-size: 9pt; color: #888; } }
+* { box-sizing: border-box; }
+body { font-family: "Helvetica","Arial",sans-serif; font-size: 10.5pt; color: #222; line-height: 1.45; margin: 0; }
+h1 { font-size: 18pt; margin: 0 0 4pt 0; color: #1a1a1a; }
+h2 { font-size: 13pt; margin: 16pt 0 6pt 0; color: #1a1a1a; border-bottom: 1px solid #ddd; padding-bottom: 3pt; }
+h3 { font-size: 11pt; margin: 10pt 0 4pt 0; color: #333; }
+.muted { color: #666; }
+.small { font-size: 9pt; }
+.tag { display: inline-block; padding: 1pt 6pt; border-radius: 8pt; font-size: 8.5pt; font-weight: 600; }
+.tag.red    { background: #fde7e7; color: #a02020; }
+.tag.amber  { background: #fff3df; color: #8a5a00; }
+.tag.green  { background: #e3f6e6; color: #1f6f33; }
+.tag.grey   { background: #ececec; color: #555; }
+table { width: 100%; border-collapse: collapse; margin-top: 4pt; }
+th, td { text-align: left; padding: 4pt 6pt; border-bottom: 1px solid #eee; vertical-align: top; }
+th { background: #f6f6f6; font-weight: 600; font-size: 9.5pt; }
+td.amt, th.amt { text-align: right; font-variant-numeric: tabular-nums; }
+.kpi { display: flex; gap: 8pt; margin: 8pt 0 12pt 0; }
+.kpi .box { flex: 1; padding: 8pt 10pt; border: 1px solid #e5e5e5; border-radius: 4pt; }
+.kpi .box .label { font-size: 8.5pt; color: #666; text-transform: uppercase; letter-spacing: 0.5pt; }
+.kpi .box .value { font-size: 14pt; font-weight: 600; margin-top: 2pt; }
+.evidence { background: #fafafa; border-left: 3pt solid #999; padding: 6pt 8pt; margin: 4pt 0 8pt 0; font-size: 9.5pt; }
+.evidence.red    { border-left-color: #c04040; }
+.evidence.amber  { border-left-color: #d09030; }
+.evidence.grey   { border-left-color: #888; }
+.citation { color: #555; font-size: 8.5pt; font-style: italic; }
+.header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #222; padding-bottom: 6pt; margin-bottom: 10pt; }
+.header .brand { font-size: 14pt; font-weight: 700; letter-spacing: 0.5pt; }
+.header .meta { font-size: 9pt; color: #555; text-align: right; }
+.letter { line-height: 1.55; }
+.letter p { margin: 6pt 0; }
+.signature { margin-top: 28pt; }
+.page-break { page-break-before: always; }

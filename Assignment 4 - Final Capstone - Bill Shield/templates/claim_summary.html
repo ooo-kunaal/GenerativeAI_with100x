@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BillShield — Claim Settlement Estimate</title>
+<style>
+{% include "_claim.css" %}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">🛡 BillShield — Claim Settlement Estimate</div>
+  <div class="meta">
+    {{ analysis.hospital.name }}<br>
+    {{ analysis.patient.name_redacted }} · {{ today }}<br>
+    {% if policy %}{{ policy.insurer }}{% if policy.policy_name %} — {{ policy.policy_name }}{% endif %}{% endif %}
+  </div>
+</div>
+
+<!-- ── Confidence notice ── -->
+{% if claim %}
+{% if claim.policy_confidence == "low" %}
+<div class="warn">
+  ⚠ Policy confidence: Low — some sub-limits may have been missed. Cross-check this estimate against your policy schedule of benefits.
+</div>
+{% elif claim.policy_confidence == "medium" %}
+<div class="warn">
+  ℹ Policy confidence: Medium — some parameters were inferred. Verify room rent and co-pay figures against your policy document.
+</div>
+{% endif %}
+{% endif %}
+
+<!-- ── Big 3 stats ── -->
+{% if claim %}
+<div class="big-stats">
+  <div class="stat">
+    <div class="slabel">Gross Bill</div>
+    <div class="sval">₹{{ "{:,.0f}".format(claim.gross_billed) }}</div>
+  </div>
+  <div class="stat green">
+    <div class="slabel">Estimated Settlement</div>
+    <div class="sval">₹{{ "{:,.0f}".format(claim.estimated_settlement) }}</div>
+  </div>
+  <div class="stat red">
+    <div class="slabel">Patient Liability</div>
+    <div class="sval">₹{{ "{:,.0f}".format(claim.patient_liability) }}</div>
+  </div>
+</div>
+{% endif %}
+
+<!-- ── Room rent cascade note ── -->
+{% if claim and claim.room_rent_cascade_ratio < 0.99 %}
+<div class="cascade-box">
+  <strong>Room Rent Proportional Cascade Applied</strong><br>
+  You were billed ₹{{ "{:,.0f}".format(claim.room_rent_billed) }} for room rent,
+  but your policy allows ₹{{ "{:,.0f}".format(claim.room_rent_allowed) }}.
+  Under IRDAI guidelines, all room-linked charges (doctor visits, nursing, ward charges)
+  were reduced proportionally to {{ "{:.0f}".format(claim.room_rent_cascade_ratio * 100) }}% of billed.
+  This rule does NOT apply to procedures, drugs, or diagnostic tests.
+</div>
+{% endif %}
+
+<!-- ── Deduction waterfall ── -->
+<h2>Deduction Breakdown</h2>
+{% if claim %}
+<div class="waterfall">
+  <div class="row">
+    <span>Gross Billed Amount</span>
+    <span class="amt">₹{{ "{:,.0f}".format(claim.gross_billed) }}</span>
+  </div>
+
+  {% for d in claim.deductions %}
+  <div class="row deduct">
+    <span>− {{ d.label }}</span>
+    <span class="amt red">−₹{{ "{:,.0f}".format(d.amount) }}</span>
+  </div>
+  <div class="deduct-detail">{{ d.explanation }}</div>
+  {% if d.items_affected %}
+  <div class="deduct-detail" style="padding-top:0">
+    <em>Items: {{ d.items_affected | join("; ") }}</em>
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  <div class="row total">
+    <span>Total Deductions</span>
+    <span class="amt red">−₹{{ "{:,.0f}".format(claim.total_deductions) }}</span>
+  </div>
+  <div class="row settlement">
+    <span>Estimated Insurance Settlement</span>
+    <span class="amt">₹{{ "{:,.0f}".format(claim.estimated_settlement) }}</span>
+  </div>
+</div>
+
+<!-- Top-up note -->
+{% if claim.top_up_triggered %}
+<div class="tip">
+  <strong>Top-Up Triggered:</strong>
+  Your base policy (₹{{ "{:,.0f}".format(claim.sum_insured_used) }}) is exhausted.
+  Your top-up policy contributes ₹{{ "{:,.0f}".format(claim.top_up_contribution) }}.
+  File a separate reimbursement claim with your top-up insurer.
+</div>
+{% endif %}
+
+<!-- ── Claim Summary table ── -->
+<h2>Summary</h2>
+<table>
+  <tr><th>Item</th><th class="amt">Amount (₹)</th></tr>
+  <tr><td>Gross Billed</td><td class="amt">{{ "{:,.0f}".format(claim.gross_billed) }}</td></tr>
+  <tr><td>Total Deductions</td><td class="amt" style="color:#a02020">{{ "{:,.0f}".format(claim.total_deductions) }}</td></tr>
+  <tr><td>Pre-Deductible Admissible</td><td class="amt">{{ "{:,.0f}".format(claim.pre_deductible_admissible) }}</td></tr>
+  {% if claim.deductible_applied > 0 %}
+  <tr><td>Fixed Deductible</td><td class="amt" style="color:#a02020">{{ "{:,.0f}".format(claim.deductible_applied) }}</td></tr>
+  {% endif %}
+  {% if claim.co_pay_amount > 0 %}
+  <tr><td>Co-Payment (patient share)</td><td class="amt" style="color:#a02020">{{ "{:,.0f}".format(claim.co_pay_amount) }}</td></tr>
+  {% endif %}
+  <tr style="background:#e3f6e6;font-weight:700"><td>Estimated Settlement (Insurer Pays)</td><td class="amt" style="color:#1f6f33">{{ "{:,.0f}".format(claim.estimated_settlement) }}</td></tr>
+  <tr style="background:#fde7e7;font-weight:700"><td>Patient Liability (Out-of-Pocket)</td><td class="amt" style="color:#a02020">{{ "{:,.0f}".format(claim.patient_liability) }}</td></tr>
+</table>
+
+{% endif %}
+
+<!-- ── Tips ── -->
+{% if claim and claim.tips %}
+<h2>Claim Tips</h2>
+{% for tip in claim.tips %}
+<div class="tip">💡 {{ tip }}</div>
+{% endfor %}
+{% endif %}
+
+<!-- ── Warnings ── -->
+{% if claim and claim.warnings %}
+{% for w in claim.warnings %}
+<div class="warn">⚠ {{ w }}</div>
+{% endfor %}
+{% endif %}
+
+<!-- ── Policy Parameters Used ── -->
+{% if policy %}
+<h2>Policy Parameters Used</h2>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>Insurer</td><td>{{ policy.insurer }}</td></tr>
+  <tr><td>Policy Type</td><td>{{ policy.policy_type }}</td></tr>
+  {% if policy.room_rent_waiver %}<tr><td>Room Rent</td><td>Waived (any room covered)</td></tr>
+  {% elif policy.room_rent_sub_limit_pct %}<tr><td>Room Rent Sub-Limit</td><td>{{ policy.room_rent_sub_limit_pct }}% of SI per day</td></tr>
+  {% elif policy.room_rent_sub_limit_abs %}<tr><td>Room Rent Sub-Limit</td><td>₹{{ "{:,.0f}".format(policy.room_rent_sub_limit_abs) }} per day</td></tr>
+  {% else %}<tr><td>Room Rent</td><td>Not specified in policy</td></tr>
+  {% endif %}
+  {% if policy.co_pay_pct %}<tr><td>Co-Payment</td><td>{{ policy.co_pay_pct }}%</td></tr>{% endif %}
+  {% if policy.deductible_amount %}<tr><td>Deductible</td><td>₹{{ "{:,.0f}".format(policy.deductible_amount) }}</td></tr>{% endif %}
+  <tr><td>Extraction Confidence</td><td>{{ policy.confidence | capitalize }}</td></tr>
+</table>
+
+{% if policy.disease_sub_limits %}
+<h3>Disease Sub-Limits</h3>
+<table>
+  <tr><th>Disease / Procedure</th><th class="amt">Cap (₹)</th><th>Notes</th></tr>
+  {% for d in policy.disease_sub_limits %}
+  <tr><td>{{ d.disease }}</td><td class="amt">{{ "{:,.0f}".format(d.cap_amount) }}</td><td class="muted small">{{ d.notes or "" }}</td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if policy.exclusions_summary %}
+<h3>Key Exclusions (from policy)</h3>
+<ul>
+{% for ex in policy.exclusions_summary %}
+<li>{{ ex }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endif %}
+
+<!-- ── Disclaimer ── -->
+<p class="muted small" style="margin-top:24pt;border-top:1px solid #eee;padding-top:8pt">
+  This claim estimate is generated by BillShield using AI and public data sources (IRDAI non-payable circular IRDAI/HLT/CIR/MISC/253/11/2019).
+  It is indicative only. Actual settlement depends on the TPA, claim documents, and insurer discretion.
+  This is not legal or financial advice. Always verify against your policy documents and consult your insurer.
+</p>
+
+</body>
+</html>
